@@ -1,0 +1,29 @@
+# 公开仓库过滤规则
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# 本地运行产物（不公开）
+server/logs/
+server/save.json
+server/output.txt
+server/patches/
+*.log
+
+# 明确排除：任何二进制 / 游戏资产 / 解包产物
+*.apk
+*.bin
+*.bytes
+*.dll
+*.so
+*.bundle
+*.zip
+*.jar
+*.png
+*.jpg
+
+.DS_Store
+Thumbs.db
+*.tmp

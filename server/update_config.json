@@ -1,0 +1,25 @@
+{
+  "_说明": "本地更新服务器配置。各渠道下发不同版本号，使其与客户端内置版本一致 -> CheckVersion 返回 3 -> 跳过更新直接用 APK 内置资源。",
+  "server_versions": {
+    "Android": "4.0.0.2",
+    "Android_90": "4.2.0.1"
+  },
+  "_server_versions_note": "UC 包 4.0.0.2 走 Android 通道；360 包 4.2.0.1 走 Android_90 通道。把某渠道改成更高版本即可触发该渠道的补丁下发模式。",
+  "server_version": "4.0.0.2",
+  "_server_version_note": "兜底值：请求渠道未在 server_versions 里命中时使用。",
+  "force_update_channels": [
+    "Android_90"
+  ],
+  "_force_note": "4.2.x 客户端的版本串为 6 段（末尾多一个 ForceUpdateAddress），列出的渠道会按 6 段应答。",
+  "version_url": "http://game.360joy.com.cn/Android/UpdateRoot/Version",
+  "increment_url": "http://game.360joy.com.cn/Android/UpdateRoot/IncrementPack",
+  "_url_note": "这两段只用于拼接服务器下发的 Version 文件文本；客户端实际请求的域名来自 APK 内置 Version.bytes 的前两段，因此必须靠 hosts / 改包把该域名指到本机",
+  "listen_host": "0.0.0.0",
+  "listen_port": 80,
+  "_port_note": "客户端请求 http 默认 80。若 80 被占用改用 8080 等，则需同步修改 APK 内 Version.bytes 的域名串（patch_apk_version.py 支持任意长度）",
+  "www_dir": "www",
+  "mirror_dir": "mirror",
+  "patch_dir": "patches",
+  "log_requests": true,
+  "_mirror_note": "mirror/ 存放从原 APK 提取的原始资源（可选，用于将来做完整更新模式）；命中不到时返回 404 并记日志"
+}
