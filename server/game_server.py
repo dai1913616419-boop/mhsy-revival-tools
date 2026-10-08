@@ -50,7 +50,12 @@ MSG_NAMES = {
 
 def log(msg):
     line = "[%s] %s" % (time.strftime("%H:%M:%S"), msg)
-    print(line, flush=True)
+    try:
+        print(line, flush=True)
+    except (OSError, ValueError):
+        # Detached SSH/console output is optional: never abort a packet handler
+        # or skip the durable log merely because stdout was closed/lost.
+        pass
     try:
         with open(LOG, "a", encoding="utf-8") as f:
             f.write(line + "\n")
@@ -801,7 +806,8 @@ def get_region_born_pos(region_id):
         return None
     try:
         import re as _re
-        txt = open(path, "r", encoding="utf-8", errors="replace").read()
+        with open(path, "r", encoding="utf-8", errors="replace") as stream:
+            txt = stream.read()
         # ⚠ 属性引号两种风格都要认！主城 1_gk.xml 用单引号 PosX='-1.12'，
         #   副本（如 3010_gk.xml）用双引号 PosX="24.0874"。
         #   369 个 gk 文件里 33 个是单引号。只认双引号 -> 主城出生点恒为 None

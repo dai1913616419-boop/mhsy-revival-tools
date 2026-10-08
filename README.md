@@ -22,6 +22,14 @@
 
 ---
 
+## 最新验证：原始新手开场与双模式启动
+
+- 新增独立 `server/opening_server.py`（TCP 9003）：新角色、原始引导、1001–1003 关卡、招募、首个任务、首次进阶与持久化。
+- [构建、部署与测试说明](launch-build/README.md)及[真实验证结论](launch-build/OPENING-VERIFIED.md)。桌面 **MHSY Opening** / **MHSY Local Game** 使用不同存档并选择对应 APK。
+- `prepare_launch.py` 和 `launch-build/` 只发布自编源代码/研究文档；构建及 Opening 服务/协议测试需另行持有合法的私有客户端和配置数据。
+- 不发布 APK、客户端程序集、游戏配置表、美术截图、签名材料或本地角色存档。报告中的截图及完整 QA 证据仅保存在私有研究存档。
+- 原有 Demo 服保留，不能将其预置角色/演示性结算行为当作 Opening 的真实新角色路径。
+
 ## 一、目录结构
 
 ```

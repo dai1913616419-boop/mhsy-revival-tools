@@ -3,11 +3,14 @@ __pycache__/
 *.py[cod]
 *.egg-info/
 .venv/
+.launch-deps/
 venv/
 
 # 本地运行产物（不公开）
 server/logs/
 server/save.json
+server/save.*.json
+server/profiles/
 server/output.txt
 server/patches/
 *.log
@@ -23,6 +26,21 @@ server/patches/
 *.jar
 *.png
 *.jpg
+work/apk/
+work/luapack_extracted/
+work/carved/
+work/carve/
+launch-build/*.json
+launch-build/*logcat*.txt
+
+# 签名材料与凭据永不发布
+*.pem
+*.p12
+*.pfx
+*.jks
+.env
+.env.*
+launch-build/*before*.json
 
 .DS_Store
 Thumbs.db

@@ -42,7 +42,12 @@ RE_INCREMENT = re.compile(r"^/(Android[^/]*)/UpdateRoot/IncrementPack/([^/]+)/(.
 
 def log(msg):
     line = "[%s] %s" % (time.strftime("%H:%M:%S"), msg)
-    print(line, flush=True)
+    try:
+        print(line, flush=True)
+    except (OSError, ValueError):
+        # Optional detached-console logging must not turn a valid GET into an
+        # empty response or suppress the durable request log.
+        pass
     try:
         with open(os.path.join(HERE, "logs", "update_server.log"), "a", encoding="utf-8") as f:
             f.write(line + "\n")
